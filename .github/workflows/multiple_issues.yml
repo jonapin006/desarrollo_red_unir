@@ -4,25 +4,11 @@ on:
     types: [opened]
 
 jobs:
-  create-update-project:
-    name: Create project issue
+  add-issue:
     runs-on: ubuntu-latest
     steps:
-      - name: Add Issue
-        uses: actions/checkout@v3
-        with:
-          #project-url: https://github.com/orgs/melisource/projects/51
-          #github-token: ${{ secrets.GH_PROJECT_TK }}
-          #item-id: ${{ steps.add-project.outputs.itemId }}
-          #field-keys: Squad,Status
-          #field-values: Andes,🔵 TODO
-          assignees: ""
-          #labels: "User Story"
-          title: "Add Issue"
-          body: |
-            ## Descripción
-            ## Criterios de aceptación
-            - [ ] 
-            - [ ] 
-            - [ ] 
-            - [ ] 
+    - uses: actions/checkout@v2
+    - name: Add Issue
+      run: |
+        echo "Adding issue to repository..."
+        cat ISSUE_TEMPLATE.md >> $GITHUB_EVENT_PATH
